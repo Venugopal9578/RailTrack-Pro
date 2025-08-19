@@ -1,0 +1,226 @@
+:root {
+    --bg-dark: #121212;
+    --card-bg: #1E1E1E;
+    --primary-blue: #007BFF;
+    --primary-hover: #0056b3;
+    --text-primary: #EAEAEA;
+    --text-secondary: #A0A0A0;
+    --border-color: #2D2D2D;
+    --success: #28a745;
+    --warning: #ffc107;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    /* New: Added a subtle gradient for more depth */
+    background-image: radial-gradient(circle at 50% 0%, #2a2a2a, var(--bg-dark) 50%);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Increased gap for better spacing */
+}
+
+.app-header {
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 2.75rem; /* Slightly larger title */
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.app-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.search-section {
+    display: flex;
+    gap: 1rem;
+}
+
+#train-number-input {
+    flex-grow: 1;
+    padding: 0.9rem 1.1rem; /* Adjusted padding */
+    font-size: 1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Slightly more rounded */
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+#train-number-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    /* New: Added a glow effect on focus */
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2), 0 0 15px rgba(0, 123, 255, 0.1);
+}
+
+#search-btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#search-btn:hover {
+    background-color: var(--primary-hover);
+    /* New: Added a subtle lift effect */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+#result-container {
+    min-height: 150px;
+}
+
+.loader {
+    width: 35px;
+    height: 35px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-message {
+    text-align: center;
+    color: #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 77, 77, 0.5);
+}
+
+.status-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px; /* More rounded cards */
+    padding: 1.5rem;
+    /* New: Added a subtle glow and transition */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    /* New: Enhanced glow on hover */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: #444;
+}
+
+/* New: Staggered animation for cards */
+#train-status-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+#gemini-summary-card {
+    animation: fadeIn 0.5s ease-out 0.2s forwards; /* 0.2s delay */
+}
+
+.card-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h2 {
+    font-size: 1.3rem; /* Larger train name */
+    font-weight: 600;
+}
+
+.card-header p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; /* Increased gap */
+}
+
+.status-item .label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem; /* Increased margin */
+}
+
+.status-item .value {
+    font-size: 1.15rem; /* Slightly larger text */
+    font-weight: 600;
+}
+
+.status-item .value.on-time { color: var(--success); }
+.status-item .value.delayed { color: var(--warning); }
+
+.gemini-header {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#gemini-summary-content {
+    font-size: 1rem;
+    line-height: 1.7; /* Improved readability */
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    min-height: 40px;
+}
+
+#gemini-btn {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#gemini-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

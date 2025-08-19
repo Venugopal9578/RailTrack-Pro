@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailTrack Pro | Live Status</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <header class="app-header">
+            <h1>RailTrack Pro</h1>
+            <p>Instant Indian Railways Train Status</p>
+        </header>
+
+        <section class="search-section">
+            <input type="text" id="train-number-input" placeholder="Enter 5-digit train no." maxlength="5">
+            <button id="search-btn">Track Train</button>
+        </section>
+
+        <section id="result-container">
+            <div class="loader" id="loader" style="display: none;"></div>
+            <p id="error-message" class="error-message" style="display: none;"></p>
+            
+            <div id="status-wrapper" class="status-wrapper" style="display: none;">
+                <!-- Train Status Card -->
+                <div id="train-status-card" class="card"></div>
+                <!-- Gemini AI Summary Card -->
+                <div id="gemini-summary-card" class="card">
+                    <div class="gemini-header">
+                        <h3>✨ AI-Powered Summary</h3>
+                    </div>
+                    <div class="loader" id="gemini-loader" style="display: none;"></div>
+                    <p id="gemini-summary-content">Click below to generate a travel summary.</p>
+                    <button id="gemini-btn">Generate with Gemini</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- CRITICAL FIX: The "?v=2" forces the browser to load the new JavaScript file -->
+    <script src="script.js?v=2"></script>
+</body>
+</html>
